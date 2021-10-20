@@ -14,9 +14,9 @@ int	first_comand(int *tubo, char *file1, char *comands1)
 	{
 		dup2(tubo[1], STDOUT_FILENO);
 		dup2(arq1, STDIN_FILENO);
+		close(tubo[0]);
+		close(tubo[1]);
 		execve(cmd1[0], cmd1, NULL);
 	}
-	close(tubo[0]);
-	close(tubo[1]);
 	return (0);
 }

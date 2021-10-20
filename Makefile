@@ -13,10 +13,14 @@ RM				= rm -f
 
 CFLAGS			= -Wall -Wextra -Werror
 
-all:			$(NAME)
+.c.o:
+			$(CC) $(CFLAGS) -c $< -o $(<:.c=.o) -I $(LIBFT_PATH)
 
-$(NAME):		$(LIBFT) $(OBJECTS) $(HEADER)
-		$(CC) $(CFLAGS) $(OBJECTS) $(LIBFT) -o $(NAME)
+all:		$(LIBFT) $(NAME)
+
+$(NAME):	$(OBJECTS)
+			cp	$(LIBFT) $(NAME)
+			$(AR) $(ARFLAGS) $(NAME) $(OBJECTS)
 
 $(LIBFT):
 				$(MAKE) -C $(LIBFT_PATH)
@@ -29,10 +33,10 @@ fclean:			clean
 				$(MAKE) -C $(LIBFT_PATH) fclean
 				$(RM) $(NAME)
 
-re: clean fclean all
+re: 			clean fclean all
 
 run:
-				clang -Wall -Werror -Wextra *c && ./a.out
+				clang -Wall -Werror -Wextra $(SOURCE) pipex.a
 
 norm:
 				norminette *c && norminette ./libft/*c
