@@ -1,7 +1,7 @@
-LIBFT_PATH		= ./libft
+LIBFT_PATH		= ../libft
 LIBFT			= $(LIBFT_PATH)/libft.a
 
-SOURCE			= main.c pipex.c first_comand.c second_comand.c
+SOURCE			= pipex_bonus.c
 
 OBJECTS			= $(SOURCE:.c=.o)
 
