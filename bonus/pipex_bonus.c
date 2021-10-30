@@ -21,7 +21,7 @@ int	first_comand(t_tubo tubo, char *file1, char *comands1)
 	return (0);
 }
 
-int	last_comands(t_tubo tubo, char *file2, char *comands2)
+int	last_comands(t_tubo fd, char *file2, char *comands2)
 {
 	char	**cmd2;
 	int 	arq2;
@@ -33,10 +33,10 @@ int	last_comands(t_tubo tubo, char *file2, char *comands2)
 		return (write(2, "Arq2 Error!", 12));
 	else
 	{
-		dup2(tubo.tubo[0], STDIN_FILENO);
+		dup2(fd.tubo[0], STDIN_FILENO);
 		dup2(arq2, STDOUT_FILENO);
-		close(tubo.tubo[0]);
-		close(tubo.tubo[1]);
+		close(fd.tubo[0]);
+		close(fd.tubo[1]);
 		execve(cmd2[0], cmd2, NULL);
 	}
 	return (0);
@@ -50,13 +50,19 @@ int	execve_comand(t_tubo fd, char *comands)
 	cmd[0] = ft_strjoin("/usr/bin/", cmd[0]);
 
 	dup2(fd.tubo[0], STDIN_FILENO);
-	dup2(fd.tubo[1], STDOUT_FILENO);
-	fd.temp = fd.tubo[1];
+	dup2(fd.temp[1], STDOUT_FILENO);
+	execve(cmd[0], cmd, NULL);
+
 	close(fd.tubo[1]);
 	close(fd.tubo[0]);
-	execve(cmd[0], cmd, NULL);
+
 	pipe(fd.tubo);
-	fd.tubo[0] = fd.temp;
+
+	dup2(fd.temp[0], STDIN_FILENO);
+	dup2(fd.tubo[1], STDOUT_FILENO);
+
+	close(fd.tubo[0]);
+	close(fd.tubo[1]);
 	return (0);
 }
 
@@ -78,6 +84,7 @@ int	pipex(char *argv[], char *envp[], int argc)
 	if (pid1 == 0)
 		first_comand(fd, argv[1], argv[2]);
 	i = 3;
+	close(fd.tubo[1]);
 	pid2 = fork();
 	if (pid2 == -1)
 		perror("Fork Error!");

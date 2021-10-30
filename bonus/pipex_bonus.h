@@ -5,7 +5,7 @@
 typedef	struct s_tubo
 {
 	int	tubo[2];
-	int	temp;
+	int	temp[2];
 }		t_tubo;
 
 #include "../libft/libft.h"
