@@ -6,7 +6,7 @@
 /*   By: wjuneo-f <wjuneo-f@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 15:29:21 by wjuneo-f          #+#    #+#             */
-/*   Updated: 2021/11/19 13:02:27 by wjuneo-f         ###   ########.fr       */
+/*   Updated: 2021/11/19 14:28:13 by wjuneo-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ typedef	struct s_conn
 #include <fcntl.h>
 #include <sys/wait.h>
 
-int		start_pipex(int argc, char *argv[], char *evnp[]);
+int		start_pipex(t_conn saves, int argc, char *argv[], char *evnp[]);
 void	finish(int input, int output, char **cmd);
 char	**format_comands(char *comands);
 char	**free_malloc(char **result);
