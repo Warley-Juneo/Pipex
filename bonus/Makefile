@@ -6,14 +6,14 @@
 #    By: wjuneo-f <wjuneo-f@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/18 15:29:27 by wjuneo-f          #+#    #+#              #
-#    Updated: 2021/11/18 15:29:28 by wjuneo-f         ###   ########.fr        #
+#    Updated: 2021/11/19 12:58:36 by wjuneo-f         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 LIBFT_PATH		= .././libft
 LIBFT			= $(LIBFT_PATH)/libft.a
 
-SOURCE			= pipex_bonus.c
+SOURCE			= main.c pipex_bonus.c format_comands.c finish.c free_malloc.c
 
 OBJECTS			= $(SOURCE:.c=.o)
 
@@ -51,7 +51,7 @@ run:
 				clang -Wall -Werror -Wextra $(SOURCE) pipex.a
 
 runb:
-				clang -Wall -Werror -Wextra pipex_bonus.c pipex.a
+				clang -Wall -Werror -Wextra $(SOURCE) pipex.a
 
 norm:
 				norminette *c && norminette ./libft/*c

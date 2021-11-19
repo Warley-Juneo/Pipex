@@ -2,7 +2,7 @@
 
 int	execve_comands(t_conn saves, char **comands, int index, int argc)
 {
-	int	fd[0];
+	int	fd[2];
 	int	process;
 
 	if (pipe(fd) == -1)
@@ -16,7 +16,7 @@ int	execve_comands(t_conn saves, char **comands, int index, int argc)
 		{
 			finish(saves.filein, fd[1], comands);
 		}
-		else if (index == argc - 1)
+		else if (index == argc)
 		{
 			finish(fd[0], saves.fileout, comands);
 		}
@@ -33,18 +33,24 @@ int	execve_comands(t_conn saves, char **comands, int index, int argc)
 }
 
 
-int	start_pipex(char argc, char *argv[], char *evnp[])
+int	start_pipex(int argc, char *argv[], char *envp[])
 {
-	t_conn saves;
+	t_conn	saves;
 	int		index;
 	char	**cmd;
 
+	(void)envp;
 	saves.filein = open(argv[1], O_RDONLY);
 	saves.fileout = open(argv[argc], O_RDWR);
-	index = 0;
+	index = -1;
 	while (++index <= argc - 1)
 	{
 		cmd = format_comands(argv[index + 1]);
 		execve_comands(saves, cmd, index, argc);
 	}
+
+	free_malloc(cmd);
+	close(saves.filein);
+	close(saves.fileout);
+	return (0);
 }
