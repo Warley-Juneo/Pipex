@@ -6,7 +6,7 @@
 #    By: wjuneo-f <wjuneo-f@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/18 15:29:27 by wjuneo-f          #+#    #+#              #
-#    Updated: 2021/11/19 14:08:53 by wjuneo-f         ###   ########.fr        #
+#    Updated: 2021/11/19 15:11:10 by wjuneo-f         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ NAME			= pipex.a
 CC				= clang
 RM				= rm -f
 
-CFLAGS			= -Wall -Wextra -Werror
+CFLAGS			= -Wall -Wextra -Werror -g3
 
 .c.o:
 			$(CC) $(CFLAGS) -c $< -o $(<:.c=.o) -I $(LIBFT_PATH)
