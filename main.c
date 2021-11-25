@@ -8,5 +8,4 @@ int main(int argc, char *argv[], char *envp[])
 		return (write(2, "Args Error!", 12));
 	pipex(argv, envp);
 	return (0);
-
 }

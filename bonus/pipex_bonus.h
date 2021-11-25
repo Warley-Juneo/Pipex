@@ -6,7 +6,7 @@
 /*   By: wjuneo-f <wjuneo-f@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 15:29:21 by wjuneo-f          #+#    #+#             */
-/*   Updated: 2021/11/22 23:46:22 by wjuneo-f         ###   ########.fr       */
+/*   Updated: 2021/11/24 19:50:27 by wjuneo-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ typedef	struct s_conn
 	int		filein;
 	int		fileout;
 	int		temp;
+	char	*limit;
+	char	*compar;
 }			t_conn;
 
 #include "../libft/libft.h"

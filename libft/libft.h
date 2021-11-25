@@ -6,7 +6,7 @@
 /*   By: wjuneo-f <wjuneo-f@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/29 15:50:00 by wjuneo-f          #+#    #+#             */
-/*   Updated: 2021/08/11 21:17:05 by wjuneo-f         ###   ########.fr       */
+/*   Updated: 2021/11/24 19:29:43 by wjuneo-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,13 @@
 
 # include <string.h>
 # include <stdlib.h>
+
+#define OPEN_MAX 256
+
+#ifndef BUFFER_SIZE
+# define BUFFER_SIZE 10
+#endif
+
 
 typedef struct s_list
 {
@@ -493,5 +500,7 @@ void	ft_lstdelone(t_list *lst, void (*del)(void*));
  * @param f  The adress of the function used to iterate on the list.
  */
 void	ft_lstiter(t_list *lst, void (*f)(void *));
+
+char	*get_next_line(int fd);
 
 #endif

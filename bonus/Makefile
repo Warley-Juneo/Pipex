@@ -6,14 +6,14 @@
 #    By: wjuneo-f <wjuneo-f@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/18 15:29:27 by wjuneo-f          #+#    #+#              #
-#    Updated: 2021/11/19 15:11:10 by wjuneo-f         ###   ########.fr        #
+#    Updated: 2021/11/23 19:55:35 by wjuneo-f         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 LIBFT_PATH		= .././libft
 LIBFT			= $(LIBFT_PATH)/libft.a
 
-SOURCE			= main.c pipex_bonus.c format_comands.c finish.c free_malloc.c
+SOURCE			= main.c pipex_bonus.c format_comands.c free_malloc.c
 
 OBJECTS			= $(SOURCE:.c=.o)
 
