@@ -48,7 +48,7 @@ fclean:			clean
 re: 			clean fclean all
 
 run:
-				clang -Wall -Werror -Wextra $(SOURCE) pipex.a
+				clang -Wall -Werror -Wextra $(SOURCE) pipex.a -g3
 
 runb:
 				clang -Wall -Werror -Wextra $(SOURCE) pipex.a

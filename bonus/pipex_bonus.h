@@ -20,6 +20,12 @@ typedef	struct s_conn
 	int		temp;
 	char	*limit;
 	char	*compar;
+	int		here_doc;
+
+
+	int jump1;
+	int jump2;
+	int jump3;
 }			t_conn;
 
 #include "../libft/libft.h"
