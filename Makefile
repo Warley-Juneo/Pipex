@@ -1,26 +1,27 @@
 LIBFT_PATH		= ./libft
 LIBFT			= $(LIBFT_PATH)/libft.a
 
-SOURCE			= main.c pipex.c first_comand.c second_comand.c
+SOURCE			= main.c format_comands.c pipex.c
 
 OBJECTS			= $(SOURCE:.c=.o)
 
 HEADER			= pipex.h
-NAME			= pipex.a
+NAME			= pipex
 
 CC				= clang
 RM				= rm -f
 
 CFLAGS			= -Wall -Wextra -Werror
+AR 				= ar
+ARFLAGS			= rcs
 
 .c.o:
-			$(CC) $(CFLAGS) -c $< -o $(<:.c=.o) -I $(LIBFT_PATH)
+				$(CC) $(CFLAGS) -c $< -o $(<:.c=.o) -I $(LIBFT_PATH)
 
-all:		$(LIBFT) $(NAME)
+all:			$(LIBFT) $(NAME)
 
-$(NAME):	$(OBJECTS)
-			cp	$(LIBFT) $(NAME)
-			$(AR) $(ARFLAGS) $(NAME) $(OBJECTS)
+$(NAME):		$(LIBFT) $(OBJECTS) $(HEADER)
+				$(CC) $(CFLAGS) $(OBJECTS) $(LIBFT) -o $(NAME)
 
 $(LIBFT):
 				$(MAKE) -C $(LIBFT_PATH)
@@ -36,10 +37,7 @@ fclean:			clean
 re: 			clean fclean all
 
 run:
-				clang -Wall -Werror -Wextra $(SOURCE) pipex.a
-
-runb:
-				clang -Wall -Werror -Wextra pipex_bonus.c pipex.a
+				clang $(SOURCE) pipex
 
 norm:
 				norminette *c && norminette ./libft/*c

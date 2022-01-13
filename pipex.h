@@ -9,14 +9,18 @@
 #include <fcntl.h>
 #include <sys/wait.h>
 
-typedef	struct s_tubo
+typedef	struct s_conn
 {
-	int	tubo[2];
-}		t_tubo;
+	int	filein;
+	int	fileout;
+}		t_conn;
 
+#ifndef CONST
+# define CONST "''"
+#endif
 
-int		pipex(char *argv[], char *envp[]);
-int		first_comand(int *tubo, char *file1, char *comands1);
-int		second_comand(int *tubo, char *file2, char *comands2);
+int		start_pipex(int argc, char *argv[], char *envp[]);
+char	**format_comands(char *comands, char *envp[]);
+void 	ft_exit(t_conn saves, int index);
 
 #endif
