@@ -17,7 +17,7 @@ char	**format_comands(char *comands, char *envp[])
 	char	**cmd;
 	char	**env;
 	char	*temp;
-	
+
 	cmd = ft_split(comands, ' ');
 	while (ft_strncmp("PATH=", *envp, 4) && *envp++)
 		;
@@ -30,7 +30,6 @@ char	**format_comands(char *comands, char *envp[])
 		if (access(temp, F_OK) == 0)
 		{
 			cmd[0] = temp;
-			free(temp);
 			return (cmd);
 		}
 		free(temp);

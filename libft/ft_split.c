@@ -12,21 +12,20 @@
 
 #include "libft.h"
 
+static char *ft_trata(char *result)
+{
+	int		i;
+	size_t	end;
 
-// static char *ft_trata(char *result)
-// {
-// 	int		i;
-// 	size_t	end;
-
-// 	i = 0;
-// 	end = ft_strlen(result);
-//     if (result[i] == 39)
-// 	{ 
-// 		ft_substr(result, 1, end - 1);
-//     }
+	i = 0;
+	end = ft_strlen(result);
+    if (result[i] == 39)
+	{ 
+		ft_substr(result, 1, end - 1);
+    }
 	
-// 	return (result);
-// }
+	return (result);
+}
 
 static size_t
 	add_string(char const *s, char c)
@@ -91,7 +90,7 @@ char	**ft_split(char const *s, char c)
 			s++;
 		end = add_string(s, c);
 		result[i] = ft_substr(s, 0, end);
-		// ft_trata(result[i]);
+		result[i] = ft_trata(result[i]);
 		if (!result[i])
 			return (free_malloc(result, i));
 		s += end + 1;
