@@ -15,6 +15,7 @@
 
 # include <string.h>
 # include <stdlib.h>
+# include <stdio.h>
 
 #define OPEN_MAX 256
 

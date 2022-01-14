@@ -1,28 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wjuneo-f <wjuneo-f@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/10 03:43:58 by wjuneo-f          #+#    #+#             */
-/*   Updated: 2021/08/10 03:44:00 by wjuneo-f         ###   ########.fr       */
+/*   Created: 2021/07/29 15:49:35 by wjuneo-f          #+#    #+#             */
+/*   Updated: 2021/08/11 20:56:24 by wjuneo-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../pipex.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	char	*new_string;
+	size_t	i;
 
-	if (!s1 || !s2)
-		return (NULL);
-	new_string = (char *) ft_calloc((ft_strlen(s1)
-				+ ft_strlen(s2) + 1), sizeof(char));
-	if (!new_string)
-		return (NULL);
-	ft_strlcpy(new_string, s1, ft_strlen(s1) + 1);
-	ft_strlcpy(&(new_string[ft_strlen(s1)]), s2, ft_strlen(s2) + 1);
-	return (new_string);
+	i = 0;
+	if (n == 0)
+		return (0);
+	while ((s1[i] || s2[i]) && i < n)
+	{
+		if ((unsigned char) s1[i] && (unsigned char) !s2[i])
+			return (1);
+		if ((unsigned char) s1[i] != (unsigned char) s2[i])
+			return ((unsigned char) s1[i] - (unsigned char) s2[i]);
+		i++;
+	}
+	return (0);
 }

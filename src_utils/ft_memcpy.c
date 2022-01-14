@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wjuneo-f <wjuneo-f@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/10 03:43:58 by wjuneo-f          #+#    #+#             */
-/*   Updated: 2021/08/10 03:44:00 by wjuneo-f         ###   ########.fr       */
+/*   Created: 2021/07/29 15:49:03 by wjuneo-f          #+#    #+#             */
+/*   Updated: 2021/08/11 21:12:34 by wjuneo-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../pipex.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
-	char	*new_string;
+	unsigned char	*ptr;
+	unsigned char	*ptr1;
 
-	if (!s1 || !s2)
-		return (NULL);
-	new_string = (char *) ft_calloc((ft_strlen(s1)
-				+ ft_strlen(s2) + 1), sizeof(char));
-	if (!new_string)
-		return (NULL);
-	ft_strlcpy(new_string, s1, ft_strlen(s1) + 1);
-	ft_strlcpy(&(new_string[ft_strlen(s1)]), s2, ft_strlen(s2) + 1);
-	return (new_string);
+	if ((!dest && !src) || !n)
+		return (dest);
+	ptr = (unsigned char *)dest;
+	ptr1 = (unsigned char *)src;
+	while (n--)
+		*ptr++ = *ptr1++;
+	return (dest);
 }

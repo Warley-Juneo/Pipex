@@ -1,12 +1,30 @@
 #include "pipex.h"
 
-void ft_exit(t_conn saves, int index)
+void	free_ptr(char **ptr)
+{
+	char	**temp;
+
+	temp = ptr;
+	while(*ptr)
+		free(*ptr++);
+	// *ptr = NULL;
+	free(temp);
+}
+
+void 	ft_exit(t_conn saves, int index, char **cmd)
 {
 	close(saves.filein);
 	close(saves.fileout);
+	if (cmd)
+	{
+		free_ptr(cmd);
+	}
 	if (index == 1)
 		exit(0);
-	exit(127);
+	else if (index == 2)
+		exit(127);
+	else
+		exit(0);
 }
 
 int execve_comands(t_conn *saves, char **comands, int index)
@@ -27,11 +45,16 @@ int execve_comands(t_conn *saves, char **comands, int index)
 			dup2(fd[1], STDOUT_FILENO);
 		if (index == 2)
 			dup2(saves->fileout, STDOUT_FILENO);
-		execve(comands[0], comands, NULL);
+		if (execve(comands[0], comands, NULL) == -1)
+			{
+				free_ptr(comands);
+				exit(1);
+			}
 	}
 	wait(NULL);
 	saves->filein = fd[0];
 	close(fd[1]);
+	free_ptr(comands);
 	return (0);
 }
 
@@ -52,13 +75,16 @@ int	start_pipex(int argc, char *argv[], char *envp[])
 	index = 0;
 	while (++index <= argc - 3)
 	{
-		if (format_comands(argv[index + 1], envp) != 0)
-		{
-			cmd = format_comands(argv[index + 1], envp);
+		cmd = format_comands(argv[index + 1], envp);
+		if (cmd)
 			execve_comands(&saves, cmd, index);
-		}
 		else
-			ft_exit(saves, index);
+		{
+			if (index == 2)
+				ft_exit(saves, index, cmd);
+		}
 	}
+	close(saves.filein);
+	close(saves.fileout);
 	return (0);
 }

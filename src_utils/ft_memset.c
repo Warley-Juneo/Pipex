@@ -1,28 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wjuneo-f <wjuneo-f@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/10 03:43:58 by wjuneo-f          #+#    #+#             */
-/*   Updated: 2021/08/10 03:44:00 by wjuneo-f         ###   ########.fr       */
+/*   Created: 2021/07/29 15:49:09 by wjuneo-f          #+#    #+#             */
+/*   Updated: 2021/08/02 23:42:03 by wjuneo-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../pipex.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
-{
-	char	*new_string;
 
-	if (!s1 || !s2)
-		return (NULL);
-	new_string = (char *) ft_calloc((ft_strlen(s1)
-				+ ft_strlen(s2) + 1), sizeof(char));
-	if (!new_string)
-		return (NULL);
-	ft_strlcpy(new_string, s1, ft_strlen(s1) + 1);
-	ft_strlcpy(&(new_string[ft_strlen(s1)]), s2, ft_strlen(s2) + 1);
-	return (new_string);
+void	*ft_memset(void *str, int c, size_t n)
+{
+	void	*string1;
+
+	string1 = str;
+	while (n--)
+		*(unsigned char *)str++ = (unsigned char)c;
+	return (string1);
 }
