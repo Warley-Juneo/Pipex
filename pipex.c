@@ -6,7 +6,7 @@
 /*   By: wjuneo-f <wjuneo-f@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 21:02:35 by wjuneo-f          #+#    #+#             */
-/*   Updated: 2022/01/14 21:20:00 by wjuneo-f         ###   ########.fr       */
+/*   Updated: 2022/01/14 21:40:02 by wjuneo-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ int	start_pipex(int argc, char *argv[], char *envp[])
 
 	saves.filein = open(argv[1], O_RDONLY);
 	saves.fileout = open(argv[4], O_CREAT | O_WRONLY | O_TRUNC, 0777);
+	set_files(saves);
 	index = 0;
 	while (++index <= argc - 3)
 	{
