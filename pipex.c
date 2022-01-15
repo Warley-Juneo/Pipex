@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pipex.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wjuneo-f <wjuneo-f@student.42sp.org.br>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/14 21:02:35 by wjuneo-f          #+#    #+#             */
+/*   Updated: 2022/01/14 21:20:00 by wjuneo-f         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "pipex.h"
 
 void	free_ptr(char **ptr)
@@ -5,32 +17,31 @@ void	free_ptr(char **ptr)
 	char	**temp;
 
 	temp = ptr;
-	while(*ptr)
-		free(*ptr++);
-	// *ptr = NULL;
-	free(temp);
+	while (*ptr)
+		free (*ptr++);
+	free (temp);
 }
 
-void 	ft_exit(t_conn saves, int index, char **cmd)
+void	ft_exit(t_conn saves, int index, char **cmd)
 {
 	close(saves.filein);
 	close(saves.fileout);
 	if (cmd)
 	{
-		free_ptr(cmd);
+		free_ptr (cmd);
 	}
 	if (index == 1)
-		exit(0);
+		exit (0);
 	else if (index == 2)
-		exit(127);
+		exit (127);
 	else
-		exit(0);
+		exit (0);
 }
 
-int execve_comands(t_conn *saves, char **comands, int index)
+int	execve_comands(t_conn *saves, char **comands, int index)
 {
-	int fd[2];
-	int pid;
+	int	fd[2];
+	int	pid;
 
 	if (pipe(fd) == -1)
 		return (0);
@@ -38,19 +49,7 @@ int execve_comands(t_conn *saves, char **comands, int index)
 	if (pid == -1)
 		return (0);
 	else if (pid == 0)
-	{
-		dup2(saves->filein, STDIN_FILENO);
-		close(fd[0]);
-		if (index == 1)
-			dup2(fd[1], STDOUT_FILENO);
-		if (index == 2)
-			dup2(saves->fileout, STDOUT_FILENO);
-		if (execve(comands[0], comands, NULL) == -1)
-			{
-				free_ptr(comands);
-				exit(1);
-			}
-	}
+		execve_child(saves, comands, index, fd);
 	wait(NULL);
 	saves->filein = fd[0];
 	close(fd[1]);
@@ -60,18 +59,12 @@ int execve_comands(t_conn *saves, char **comands, int index)
 
 int	start_pipex(int argc, char *argv[], char *envp[])
 {
-	t_conn 	saves;
+	t_conn	saves;
 	int		index;
 	char	**cmd;
 
 	saves.filein = open(argv[1], O_RDONLY);
 	saves.fileout = open(argv[4], O_CREAT | O_WRONLY | O_TRUNC, 0777);
-	if (saves.filein == -1 || saves.fileout == -1)
-	{
-		close(saves.filein);
-		close(saves.fileout);
-		exit (1);
-	}
 	index = 0;
 	while (++index <= argc - 3)
 	{

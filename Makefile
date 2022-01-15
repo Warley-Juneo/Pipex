@@ -1,10 +1,22 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: wjuneo-f <wjuneo-f@student.42sp.org.br>    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2022/01/14 21:02:52 by wjuneo-f          #+#    #+#              #
+#    Updated: 2022/01/14 21:22:25 by wjuneo-f         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 LIBFT_UTILS		= ./src_utils
 
 SOURCE			= main.c format_comands.c pipex.c ./src_utils/ft_split.c
 SOURCE			+= ./src_utils/ft_strdup.c ./src_utils/ft_strlen.c
 SOURCE			+= ./src_utils/ft_strncmp.c ./src_utils/ft_substr.c ./src_utils/ft_calloc.c
 SOURCE			+= ./src_utils/ft_strlcpy.c ./src_utils/ft_memset.c ./src_utils/ft_memcpy.c
-SOURCE			+= ./src_utils/ft_strjoin.c spaces_treats.c
+SOURCE			+= ./src_utils/ft_strjoin.c spaces_treats.c pipex_utils.c
 
 OBJECTS			= $(SOURCE:.c=.o)
 

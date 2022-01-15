@@ -1,15 +1,27 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   spaces_treats.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wjuneo-f <wjuneo-f@student.42sp.org.br>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/14 21:02:40 by wjuneo-f          #+#    #+#             */
+/*   Updated: 2022/01/14 21:07:04 by wjuneo-f         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "pipex.h"
 
-void 	reverse_space__treat_comands(char **comands)
+void	reverse_space__treat_comands(char **comands)
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	while(comands[i])
+	while (comands[i])
 	{
 		j = 0;
-		while(comands[i][j])
+		while (comands[i][j])
 		{
 			if (comands[i][j] == 1)
 			{
@@ -26,14 +38,14 @@ void	space_treat_comands(char *comands)
 	int	i;
 
 	i = 0;
-	while(comands[i])
+	while (comands[i])
 	{
 		if (comands[i] == 39)
 		{
 			i++;
 			if (comands[i] == 39)
 				i++;
-			while(comands[i] != 39 && comands[i] != '\0')
+			while (comands[i] != 39 && comands[i] != '\0')
 			{
 				if (comands[i] == ' ')
 					comands[i] = 1;
@@ -44,14 +56,14 @@ void	space_treat_comands(char *comands)
 	}
 }
 
-char    **join_access(char **env, char **cmd)
+char	**join_access(char **env, char **cmd)
 {
-    char    *temp;
-    char    *temp1;
-    char    **temp_env;
+	char	*temp;
+	char	*temp1;
+	char	**temp_env;
 
-    temp_env = env;
-    while(*env)
+	temp_env = env;
+	while (*env)
 	{
 		temp = ft_strjoin(*env++, "/");
 		temp1 = ft_strjoin(temp, cmd[0]);
@@ -70,5 +82,5 @@ char    **join_access(char **env, char **cmd)
 	write(2, cmd[0], ft_strlen(cmd[0]));
 	free_ptr(temp_env);
 	free_ptr(cmd);
-    return (NULL);
+	return (NULL);
 }

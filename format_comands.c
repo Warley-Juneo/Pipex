@@ -22,12 +22,12 @@ char	*new_comand(char *cmd)
 	new_comand = ft_calloc((ft_strlen(cmd) - 1), sizeof(char *));
 	i = 0;
 	j = 0;
-	while(cmd[i])
+	while (cmd[i])
 	{
 		if (cmd[i] == 39)
 		{
 			i++;
-			while(cmd[i + 1] != '\0')
+			while (cmd[i + 1] != '\0')
 			{
 				new_comand[j] = cmd[i];
 				i++;
@@ -45,12 +45,12 @@ char	**treat_comands(char **cmd)
 {
 	int	i;
 	int	j;
-	
+
 	i = 0;
-	while(cmd[i])
+	while (cmd[i])
 	{
 		j = 0;
-		while(cmd[i][j])
+		while (cmd[i][j])
 		{
 			if (cmd[i][j] == 39)
 			{
